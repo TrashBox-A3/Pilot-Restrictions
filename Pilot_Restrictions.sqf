@@ -1,6 +1,7 @@
-//Script by Sa-Matra
+///Script by Rodeostar42///
+
 true spawn {
-    //List of pilot classes, crewman classes, affected aircraft classes and affected vehicle classes
+
 
     _jetpilots = [
 "JET1",
@@ -12,7 +13,6 @@ true spawn {
 "JET7",
 "JET8"
 ];
-
     _pilots = [
 "HELI1",
 "HELI2",
@@ -23,7 +23,6 @@ true spawn {
 "HELI7",
 "HELI8"
 ];
-
     _crewmen = [
 "CR1",
 "CR2",
@@ -33,16 +32,13 @@ true spawn {
 "CR6",
 "CR7",
 "CR8"
-
 ];
-
     _ofppilots = [
 "OFPJET1",
 "OFPJET2",
 "OFPJET3",
 "OFPJET4"
 ];
-
     _ofpcrewmen = [
 "OFPCR1",
 "OFPCR2",
@@ -52,9 +48,7 @@ true spawn {
 "OFPCR6",
 "OFPCR7",
 "OFPCR8"
-
 ];
-
     _ofpjetpilot = [
 "OFPJET1",
 "OFPJET2",
@@ -64,12 +58,10 @@ true spawn {
 "OFPJET6",
 "OFPJET7",
 "OFPJET8"
-
 ];
 
 
     _aircraft = [
-
 ///unsung///
 "uns_A4B_skyhawk_BMB",
 "uns_A4B_skyhawk_CAP",
@@ -193,12 +185,9 @@ true spawn {
 "UNS_skymaster_CAS",
 "UNS_skymaster_FAC",
 "UNS_skymaster_OBS"
-
-
 ];
 
     _usafc130 = [
-
 ///unsung///
 "uns_c1a6",
 "uns_c1a7cargo",
@@ -210,11 +199,9 @@ true spawn {
 "UNS_Hawkeye",
 "uns_AC47",
 "uns_AC47_cias"
-
 ];
 
     _gunship = [
-
 ///unsung///
 "uns_a3avah1",
 "uns_a3avah11",
@@ -229,12 +216,9 @@ true spawn {
 "uns_a3bvah6",
 "uns_a3b",
 "uns_a3bcamo1"
-
-
 ];
 
     _heli = [
-
 ///unsung///
 "uns_H13_gunship_CAV",
 "uns_H13_gunship_Army",
@@ -278,13 +262,9 @@ true spawn {
 "uns_H13_medevac_USMC",
 "uns_H13_medevac_USN",
 "uns_uh1d_med"
-
-
-
 ];
 
     _attackheli = [
-
 ///unsung///
 "UNS_AH1G_FFAR",
 "UNS_AH1G_M158",
@@ -298,7 +278,6 @@ true spawn {
 "uns_m551",
 "uns_M67A"
 ];
-
     _mh47ehh60g = [
 ///unsung///
 "uns_ch47_m60_army",
@@ -306,27 +285,15 @@ true spawn {
 "uns_ch47_m60_usmc",
 "uns_ch47a_medevac"
 ];
-
     _cupch47 = [
 ///unsung///
 "uns_ach47_m134",
 "uns_ach47_m200"
-
-
 ];
-
     _ofpheli = [
-
-    ///RHS///
-
 ];
 
     _ofparmor = [
-
-    ///RHS///
-
-
-
 
 ];
 
@@ -335,8 +302,7 @@ true spawn {
 ];
 
     _ofpjet = [
-    ///RHS///
-
+  
 ];
 
 
