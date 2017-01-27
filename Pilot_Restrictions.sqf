@@ -3,6 +3,7 @@
 true spawn {
 
 
+//ジェットパイロット名//
     _jetpilots = [
 "JET1",
 "JET2",
@@ -13,6 +14,8 @@ true spawn {
 "JET7",
 "JET8"
 ];
+
+//ヘリパイ名//
     _pilots = [
 "HELI1",
 "HELI2",
@@ -23,6 +26,8 @@ true spawn {
 "HELI7",
 "HELI8"
 ];
+
+//タンククルー名//
     _crewmen = [
 "CR1",
 "CR2",
@@ -33,12 +38,16 @@ true spawn {
 "CR7",
 "CR8"
 ];
+
+//OPFORヘリパイ名//
     _ofppilots = [
 "OFPJET1",
 "OFPJET2",
 "OFPJET3",
 "OFPJET4"
 ];
+
+//OPFORタンククルー名//
     _ofpcrewmen = [
 "OFPCR1",
 "OFPCR2",
@@ -49,6 +58,8 @@ true spawn {
 "OFPCR7",
 "OFPCR8"
 ];
+
+//OPFORジェットパイロット名//
     _ofpjetpilot = [
 "OFPJET1",
 "OFPJET2",
@@ -61,6 +72,7 @@ true spawn {
 ];
 
 
+//Vehicleカテゴリー//
     _aircraft = [
 ///unsung///
 "uns_A4B_skyhawk_BMB",
