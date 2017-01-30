@@ -2,70 +2,7 @@
 true spawn {
 
 
-    _jetpilots = [
-"JET1",
-"JET2",
-"JET3",
-"JET4",
-"JET5",
-"JET6",
-"JET7",
-"JET8"
-];
 
-    _pilots = [
-"HELI1",
-"HELI2",
-"HELI3",
-"HELI4",
-"HELI5",
-"HELI6",
-"HELI7",
-"HELI8"
-];
-
-    _crewmen = [
-"CR1",
-"CR2",
-"CR3",
-"CR4",
-"CR5",
-"CR6",
-"CR7",
-"CR8"
-
-];
-
-    _ofppilots = [
-"OFPJET1",
-"OFPJET2",
-"OFPJET3",
-"OFPJET4"
-];
-
-    _ofpcrewmen = [
-"OFPCR1",
-"OFPCR2",
-"OFPCR3",
-"OFPCR4",
-"OFPCR5",
-"OFPCR6",
-"OFPCR7",
-"OFPCR8"
-
-];
-
-    _ofpjetpilot = [
-"OFPJET1",
-"OFPJET2",
-"OFPJET3",
-"OFPJET4",
-"OFPJET5",
-"OFPJET6",
-"OFPJET7",
-"OFPJET8"
-
-];
 
 
     _aircraft = [
