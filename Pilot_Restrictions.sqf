@@ -13,12 +13,12 @@ true spawn {
 
 ];
 
-    _heli = [
+    _chopper = [
 "Helicopter_Base_F",
 "Heli_Light_01_base_F"
 ];
 
-    _attackheli = [
+    _attackchopper = [
 "Helicopter_Base_H"
 ];
 
