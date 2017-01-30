@@ -89,7 +89,7 @@ _heligear = [
             };
 
             ///Chopper///
-            if(({_veh isKindOf _x} count _heli)  > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
+            if(({_veh isKindOf _x} count _chopper)  > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
                 
                 _forbidden = [_veh turretUnit [0]] + [driver _veh];
                 if(player in _forbidden) then {
@@ -99,7 +99,7 @@ _heligear = [
             };
 
             ///Attack Chopper///
-            if(({_veh isKindOf _x} count _attackheli) > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
+            if(({_veh isKindOf _x} count _attackchopper) > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
                 
                 _forbidden = [_veh turretUnit [0]] + [driver _veh] + [gunner _veh] + [_veh turretUnit [2]];
                 if(player in _forbidden) then {
