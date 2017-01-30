@@ -2,12 +2,10 @@
 true spawn {
 
 
-
+///Vehicles///
     _plane = [
 
 ];
-
-    
 
     _gunship = [
 
@@ -27,7 +25,7 @@ true spawn {
 ];
 
     
-
+/////////////////
 _unit = player;
 _uniform = uniform player;
 _gear = [
@@ -53,9 +51,9 @@ _heligear = [
     waitUntil {player == player};
 
     
-    _iampilot = ((headgear player in _heligear)&&(vehicle player == player));
-    _iamjetpilot = ((headgear player in _gear)&&(vehicle player == player));
-    _iamcrewman = ((headgear player in _crewgear)&&(vehicle player == player));
+    _chopperpilot = ((headgear player in _heligear)&&(vehicle player == player));
+    _jetpilot = ((headgear player in _gear)&&(vehicle player == player));
+    _crewman = ((headgear player in _crewgear)&&(vehicle player == player));
     
 
     
@@ -64,11 +62,11 @@ _heligear = [
         _oldvehicle = vehicle player;
         waitUntil {vehicle player != _oldvehicle};
 
-        ///Plane///
+        
         if(vehicle player != player) then {
-            _veh = vehicle player;
+            _unit = vehicle player;
 
-            
+            ///Plane///
             if(({_veh isKindOf _x} count _plane) > 0 && (!(headgear player in _gear))or(vehicle player == player))   then {
                 
                 
