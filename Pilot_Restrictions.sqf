@@ -88,32 +88,32 @@ _heligear = [
             };
 
             ///Chopper///
-            if(({_veh isKindOf _x} count _chopper)  > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
+            if(({_unit isKindOf _x} count _chopper)  > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
                 
-                _forbidden = [_veh turretUnit [0]] + [driver _veh];
-                if(player in _forbidden) then {
+                _sit = [_unit turretUnit [0]] + [driver _unit];
+                if(player in _sit) then {
                     systemChat "あなたはヘリコプターパイロットではないのでパイロット席とコパイロット席に搭乗できません";
-                    player action ["getOut", _veh];
+                    player action ["getOut", _unit];
                 };
             };
 
             ///Attack Chopper///
-            if(({_veh isKindOf _x} count _attackchopper) > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
+            if(({_unit isKindOf _x} count _attackchopper) > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
                 
-                _forbidden = [_veh turretUnit [0]] + [driver _veh] + [gunner _veh] + [_veh turretUnit [2]];
-                if(player in _forbidden) then {
+                _sit = [_unit turretUnit [0]] + [driver _unit] + [gunner _unit] + [_unit turretUnit [2]];
+                if(player in _sit) then {
                     systemChat "あなたはヘリコプターパイロットではないのでパイロット席やガンナー席コパイロット席に搭乗できません";
-                    player action ["getOut", _veh];
+                    player action ["getOut", _unit];
                 };
            };           
 
             ///Crewman///
-            if((({_veh isKindOf _x} count _armor) > 0 && !_iamcrewman)&& (!(headgear player in _crewgear))or(vehicle player == player)) then {
+            if((({_unit isKindOf _x} count _armor) > 0 && !_iamcrewman)&& (!(headgear player in _crewgear))or(vehicle player == player)) then {
                 
-                _forbidden = [gunner _veh] + [driver _veh] + [commander _veh] + [_veh turretUnit [0]] + [_veh turretUnit [0,1]] + [_veh turretUnit [0,2]];
-                if(player in _forbidden) then {
+                _sit = [gunner _veh] + [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
+                if(player in _sit) then {
                     systemChat "あなたはクルーではないので運転席やガンナー席コマンダー席に搭乗できません";
-                    player action ["getOut", _veh];
+                    player action ["getOut", _unit];
                 };
             };
 
