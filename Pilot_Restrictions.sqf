@@ -22,7 +22,7 @@ true spawn {
 ];
 
     _armor = [
-
+"Tank"
 ];
 
 
@@ -59,7 +59,7 @@ _heligear = [
     while{true} do {
 
         _oldvehicle = vehicle player;
-        waitUntil {vehicle player != _oldvehicle};
+        waitUntil {((vehicle player != _oldvehicle))};
 
 
         if(vehicle player != player) then {
@@ -90,10 +90,15 @@ _heligear = [
             ///Chopper///
             if(({_unit isKindOf _x} count _chopper)  > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
 
-                _sit = [_unit turretUnit [0]] + [driver _unit];
+                _sit =  [driver _unit];
                 if(player in _sit) then {
-                    systemChat "あなたはヘリコプターパイロットではないのでパイロット席とコパイロット席に搭乗できません";
+                    systemChat "あなたはヘリコプターパイロットではないのでパイロット席に搭乗できません";
                     player action ["getOut", _unit];
+                };
+                _co = [_unit turretUnit [0]];
+                if((player in _co)&&(isCopilotEnabled _unit )) then {
+                  player enableCopilot false;
+                  systemChat "あなたはヘリコプターパイロットではないのでコントロールできません";
                 };
             };
 
