@@ -1,3 +1,4 @@
+///Pilot Restrictions V2///Script by Rodeostar42///
 
 true spawn {
 
@@ -65,24 +66,24 @@ _heligear = [
             _unit = vehicle player;
 
             ///Plane///
-            if(({_veh isKindOf _x} count _plane) > 0 && (!(headgear player in _gear))or(vehicle player == player))   then {
+            if(({_unit isKindOf _x} count _plane) > 0 && (!(headgear player in _gear))or(vehicle player == player))   then {
                 
                 
-                _forbidden = [_veh turretUnit [0]] + [gunner _veh] + [driver _veh] + [_veh turretUnit [2]];
-                if(player in _forbidden) then {
+                _sit = [_unit turretUnit [0]] + [gunner _unit] + [driver _unit] + [_unit turretUnit [2]];
+                if(player in _sit) then {
                     systemChat "あなたはジェットパイロットではないので搭乗できません";
-                    player action ["getOut", _veh];
+                    player action ["getOut", _unit];
                 };
             };
 
             
             ///Gunship///
-            if(({_veh isKindOf _x} count _gunship) > 0 && (!(headgear player in _gear))or(vehicle player == player)) then {
+            if(({_unit isKindOf _x} count _gunship) > 0 && (!(headgear player in _gear))or(vehicle player == player)) then {
                 
-                _forbidden = [_veh turretUnit [1]] + [gunner _veh] + [driver _veh] + [_veh turretUnit [0]] + [_veh turretUnit [2]] + [_veh turretUnit [3]];
-                if(player in _forbidden) then {
+                _sit = [_unit turretUnit [1]] + [gunner _unit] + [driver _unit] + [_unit turretUnit [0]] + [_unit turretUnit [2]] + [_unit turretUnit [3]];
+                if(player in _sit) then {
                     systemChat "あなたはパイロットではないのでパイロット席やガンナー席コパイロット席に搭乗できません";
-                    player action ["getOut", _veh];
+                    player action ["getOut", _unit];
                 };
             };
 
