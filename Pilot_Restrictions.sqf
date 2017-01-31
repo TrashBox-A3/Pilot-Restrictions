@@ -26,8 +26,6 @@ true spawn {
 
     
 /////////////////
-_unit = player;
-_uniform = uniform player;
 _gear = [
 
 ///Head gear///
