@@ -110,7 +110,7 @@ _heligear = [
             ///Crewman///
             if((({_unit isKindOf _x} count _armor) > 0 && !_iamcrewman)&& (!(headgear player in _crewgear))or(vehicle player == player)) then {
                 
-                _sit = [gunner _veh] + [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
+                _sit = [gunner _unit] + [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
                 if(player in _sit) then {
                     systemChat "あなたはクルーではないので運転席やガンナー席コマンダー席に搭乗できません";
                     player action ["getOut", _unit];
