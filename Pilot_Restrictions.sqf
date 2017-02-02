@@ -93,14 +93,37 @@ _heligear = [
                 _sit =  [driver _unit];
                 if(player in _sit) then {
                     systemChat "あなたはヘリコプターパイロットではないのでパイロット席に搭乗できません";
+                    showHUD [true,true,true,true,true,false,false,false,true];
                     player action ["getOut", _unit];
+                  }
+                         else
+                         {
+
+              if(({_unit isKindOf _x} count _chopper)  > 0 && ((headgear player in _heligear))or(vehicle player == player)) then {
+
+
+                _act = ["Connect", "Connect HMD", "", showHUD [true,true,true,true,true,true,true,true,true], {true}] call ace_interact_menu_fnc_createAction;
+                ["Helicopter", 0, ["ACE_MainActions"], _act, true] call ace_interact_menu_fnc_addActionToClass;
+
+                  };
+
                 };
                 _co = [_unit turretUnit [0]];
-                if((player in _co)&&(isCopilotEnabled _unit )) then {
-                  player enableCopilot false;
+                if((player in _co)) then {
+                  _unit enableCopilot false;
+                  showHUD [true,false,true,true,true,false,false,false,true];
                   systemChat "あなたはヘリコプターパイロットではないのでコントロールできません";
-                };
+
+              };
+            }
+                    }
+                 else
+                 {
+
+                   if(vehicle player != _oldvehicle) then {
+              showHUD [true,true,true,true,true,true,true,true,true];
             };
+
 
             ///Attack Chopper///
             if(({_unit isKindOf _x} count _attackchopper) > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
