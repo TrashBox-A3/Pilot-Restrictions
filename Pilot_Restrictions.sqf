@@ -5,7 +5,7 @@ true spawn {
 
 ///Vehicles///
     _plane = [
-
+"Plane_Base_F"
 ];
 
     _gunship = [
@@ -70,12 +70,21 @@ _heligear = [
             if(({_unit isKindOf _x} count _plane) > 0 && (!(headgear player in _gear))or(vehicle player == player))   then {
 
 
-                _sit = [_unit turretUnit [0]] + [gunner _unit] + [driver _unit] + [_unit turretUnit [2]];
+                _sit = [driver _unit];
                 if(player in _sit) then {
                     systemChat "あなたはジェットパイロットではないので搭乗できません";
                     player action ["getOut", _unit];
                 };
-            };
+                _co = [_unit turretUnit [0]] + [gunner _unit] + [_unit turretUnit [2]];
+                if((player in _co)) then {
+                _unit enableCopilot false;
+                showHUD [true,false,false,false,false,true,false,true,false];
+                inGameUISetEventHandler ["Action", "if (_this select 0 >= 'TakeVehicleControl') then {hint 'スキルが無い';true}"];
+                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無い';true}"];
+
+              };
+
+              };
 
 
             ///Gunship///
@@ -140,10 +149,18 @@ _heligear = [
             ///Crewman///
             if((({_unit isKindOf _x} count _armor) > 0 && !_crewman)&& (!(headgear player in _crewgear))or(vehicle player == player)) then {
 
-                _sit = [gunner _unit] + [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
-                if(player in _sit) then {
-                    systemChat "あなたはクルーではないので運転席やガンナー席コマンダー席に搭乗できません";
+                _sitt = [gunner _unit] + [driver _unit];
+                if(player in _sitt) then {
+                    systemChat "あなたはクルーではないので運転席やガンナー席に搭乗できません";
                     player action ["getOut", _unit];
+                };
+                _cot = [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
+                if((player in _cot)) then {
+                _unit enableCopilot false;
+                showHUD [true,false,false,false,false,true,false,true,false];
+                inGameUISetEventHandler ["Action", "if (_this select 0 >= 'TakeVehicleControl') then {hint 'スキルが無い';true}"];
+                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToDriver') then {hint 'タンクドライバーでは無い';true}"];
+                inGameUISetEventHandler ["Action", "if (_this select 5 == 'moveToTurret') then {hint 'タンクガンナーでは無い';true}"];
                 };
               };
 
@@ -157,6 +174,8 @@ _heligear = [
                             player enableCopilot true;
                             inGameUISetEventHandler ["Action", "if (_this select 0 == 'TakeVehicleControl') then {hint '操縦';false}"];
                             inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'Move Pilot Seat';false}"];
+                            inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToDriver') then {hint 'Move Driver Seat';false}"];
+                            inGameUISetEventHandler ["Action", "if (_this select 5 == 'moveToTurret') then {hint 'Move Gunner Seat';false}"];
                       }
                      };
                     };
