@@ -89,27 +89,33 @@ _heligear = [
             };
 
             ///Chopper///
-            if(({_unit isKindOf _x} count _chopper)  > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
+            if(({_unit isKindOf _x} count _chopper)  > 0 && (!(headgear player in _heligear))) then {
 
                 _sit =  [driver _unit];
                 if(player in _sit) then {
                     systemChat "あなたはヘリコプターパイロットではないのでパイロット席に搭乗できません";
-                    showHUD [true,true,true,true,true,false,false,false,true];
+showHUD [true,false,false,false,false,true,false,true,false];
                     player action ["getOut", _unit];
                   };
                     _co = [_unit turretUnit [0]];
                     if((player in _co)) then {
-
+                    _unit enableCopilot false;
+showHUD [true,false,false,false,false,true,false,true,false];
+                    inGameUISetEventHandler ["Action", "if (_this select 0 >= 'TakeVehicleControl') then {hint '操縦スキルが無い';true}"];
                     inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無いので移動できません';true}"];
-                    }
-                     else
-                         {
-            if(({_unit isKindOf _x} count _chopper)  > 0 && ((headgear player in _heligear))or(vehicle player == player)) then {
-
 
                   };
-                };
-              };
+                }
+                       else
+                       {
+
+                     showHUD [true,true,true,true,true,true,true,false,true];
+                     player enableCopilot true;
+                     inGameUISetEventHandler ["Action", "if (_this select 0 == 'TakeVehicleControl') then {hint '操縦';false}"];
+                     inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'Move Pilot Seat';false}"];
+
+                 };
+
 
 
             ///Attack Chopper///
@@ -132,8 +138,6 @@ _heligear = [
                 };
             };
 
-
-
-        };
-    };
+};
+};
 };
