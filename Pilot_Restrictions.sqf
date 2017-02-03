@@ -121,12 +121,29 @@ showHUD [true,false,false,false,false,true,false,true,false];
             ///Attack Chopper///
             if(({_unit isKindOf _x} count _attackchopper) > 0 && (!(headgear player in _heligear))or(vehicle player == player)) then {
 
-                _sit = [_unit turretUnit [0]] + [driver _unit] + [gunner _unit] + [_unit turretUnit [2]];
+                _sit = [driver _unit];
                 if(player in _sit) then {
                     systemChat "あなたはヘリコプターパイロットではないのでパイロット席やガンナー席コパイロット席に搭乗できません";
                     player action ["getOut", _unit];
                 };
-           };
+                _co = [_unit turretUnit [0]];
+                if((player in _co)) then {
+                _unit enableCopilot false;
+                showHUD [true,false,false,false,false,true,false,true,false];
+                inGameUISetEventHandler ["Action", "if (_this select 0 >= 'TakeVehicleControl') then {hint '操縦スキルが無い';true}"];
+                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無いので移動できません';true}"];
+
+                };
+                }
+                   else
+                   {
+
+                 showHUD [true,true,true,true,true,true,true,false,true];
+                 player enableCopilot true;
+                 inGameUISetEventHandler ["Action", "if (_this select 0 == 'TakeVehicleControl') then {hint '操縦';false}"];
+                 inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'Move Pilot Seat';false}"];
+
+                };
 
             ///Crewman///
             if((({_unit isKindOf _x} count _armor) > 0 && !_crewman)&& (!(headgear player in _crewgear))or(vehicle player == player)) then {
