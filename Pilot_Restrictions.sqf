@@ -2,29 +2,16 @@
 
 true spawn {
 
+    ///Vehicles///
+    _plane = ["Plane_Base_F"];
 
-///Vehicles///
-    _plane = [
-"Plane_Base_F"
-];
+    _gunship = ["Plane_Base_F"];
 
-    _gunship = [
-"Plane_Base_F"
-];
+    _chopper=["Helicopter","Helicopter_Base_F","Heli_Light_01_base_F"];
 
-    _chopper = [
-"Helicopter",
-"Helicopter_Base_F",
-"Heli_Light_01_base_F"
-];
+    _attackchopper = ["Helicopter_Base_H"];
 
-    _attackchopper = [
-"Helicopter_Base_H"
-];
-
-    _armor = [
-"Tank"
-];
+    _armor = ["Tank"];
 
 
 /////////////////
