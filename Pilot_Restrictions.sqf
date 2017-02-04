@@ -41,7 +41,7 @@
             _unit = vehicle player;
 
             ///Plane///
-            if((({_unit isKindOf _x} count _plane) > 0 && !_jetpilot)&& (!(headgear player in _gear))or(vehicle player == player))   then {
+            if((({_unit isKindOf _x} count _plane) > 0 ) && (!_jetpilot))   then {
 
                 _sit = [driver _unit];
                 if(player in _sit) then {
@@ -50,15 +50,15 @@
                 };
                 _co = [_unit turretUnit [0]] + [gunner _unit] + [_unit turretUnit [2]];
                 if((player in _co)) then {
-                _unit enableCopilot false;
+                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
+                 {hint 'あなたはパイロットでは無いのでこの操作は不能です';true}"];
                 showHUD [true,false,false,false,false,true,false,true,false];
 
-                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無い';true}"];
                 };
                };
 
             ///Gunship///
-            if((({_unit isKindOf _x} count _gunship) > 0 && !_jetpilot)&& (!(headgear player in _gear))) then {
+            if((({_unit isKindOf _x} count _gunship) > 0 ) && (!_jetpilot)) then {
 
                 _sitg = [driver _unit];
                 if(player in _sitg) then {
@@ -67,15 +67,15 @@
                 };
                 _cog = [_unit turretUnit [1]] + [gunner _unit] + [driver _unit] + [_unit turretUnit [0]] + [_unit turretUnit [2]] + [_unit turretUnit [3]];
                 if((player in _cog)) then {
-                _unit enableCopilot false;
+                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
+                 {hint 'あなたはパイロットでは無いのでこの操作は不能です';true}"];
                 showHUD [true,false,false,false,false,true,false,true,false];
 
-                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無い';true}"];
                 };
                };
 
             ///Chopper///
-            if((({_unit isKindOf _x} count _chopper)  > 0 && !_chopperpilot) && (!(headgear player in _heligear))) then {
+            if((({_unit isKindOf _x} count _chopper)  > 0 ) && (!_chopperpilot)) then {
 
                 _sit =  [driver _unit];
                 if(player in _sit) then {
@@ -85,15 +85,20 @@
                   };
                     _co = [_unit turretUnit [0]];
                     if((player in _co)) then {
-                    _unit enableCopilot false;
+                    inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
+                     {hint 'あなたはヘリパイロットでは無いのでこの操作は不能です';true}"];
                     showHUD [true,false,false,false,false,true,false,true,false];
 
-                    inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無いので移動できません';true}"];
+                }
+              else
+                {
+                   _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true];},{true}] call ace_interact_menu_fnc_createAction;
+                   [player, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
                   };
                  };
 
             ///Attack Chopper///
-            if((({_unit isKindOf _x} count _attackchopper) > 0 && !_chopperpilot)&& (!(headgear player in _heligear))) then {
+            if((({_unit isKindOf _x} count _attackchopper) > 0 ) && (!_chopperpilot)) then {
 
                 _sita = [driver _unit];
                 if(player in _sita) then {
@@ -102,17 +107,17 @@
                 };
                 _coa = [_unit turretUnit [0]];
                 if((player in _coa)) then {
-                _unit enableCopilot false;
+                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
+                 {hint 'あなたはヘリパイロットでは無いのでこの操作は不能です';true}"];
                 showHUD [true,false,false,false,false,true,false,true,false];
 
-                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'パイロットでは無い';true}"];
               };
              };
 
             ///Crewman///
-            if((({_unit isKindOf _x} count _armor) > 0 && !_crewman)&& (!(headgear player in _crewgear))) then {
+            if((({_unit isKindOf _x} count _armor) > 0 ) && (!_crewman)) then {
 
-                _sitt = [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
+                _sitt = [driver _unit];
                 if(player in _sitt) then {
                 showHUD [true,false,false,false,false,true,false,true,false];
                     hint "あなたはクルーではないので運転席やガンナー席に搭乗できません";
@@ -120,11 +125,10 @@
                 };
                 _cot = [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
                 if((player in _cot)) then {
-                _unit enableCopilot false;
+                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToDriver')) then
+                 {hint 'あなたはタンククルーでは無いのでこの操作は不能です';true}"];
                 showHUD [true,false,false,false,false,true,false,true,false];
 
-                inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToDriver') then {hint 'タンクドライバーでは無い';true}"];
-                inGameUISetEventHandler ["Action", "if (_this select 3 == 'moveToTurret [0,1] ') then {hint 'タンクガンナーでは無い';true}"];
                 };
               };
 
@@ -136,13 +140,14 @@
 
                             _unit = vehicle player;
                             showHUD [true,true,true,true,true,true,true,true,true];
-                            systemChat "地面";
+                            systemChat "Loop Restart";
+                            inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or
+                            (_this select 3 == 'MoveToPilot')or
+                            (_this select 3 == 'MoveToDriver')) then {;false}"];
 
-                            inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToPilot') then {hint 'Move Pilot Seat';false}"];
-                            inGameUISetEventHandler ["Action", "if (_this select 3 == 'MoveToDriver') then {hint 'Move Driver Seat';false}"];
-                            if (!isCopilotEnabled _unit) then {
-                                _unit enableCopilot true;
-                            };
+                    _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true];},{true}] call ace_interact_menu_fnc_createAction;
+                    [vehicle player, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_removeActionFromObject;
+
                       }
                      };
                     };
