@@ -27,7 +27,12 @@
 
 
         if(vehicle player != player) then {
+
             _unit = vehicle player;
+hint "yyyyyyyy";
+            _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
+            [(typeOf _unit), 1, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_removeActionFromClass;
+
 
             ///Plane///
             if(({_unit isKindOf _x} count _plane) > 0  && (!(headgear player in _gear))or(vehicle player == player)) then {
@@ -56,6 +61,7 @@
             ///Chopper///
             if(({_unit isKindOf _x} count _chopper)  > 0  && (!(headgear player in _heligear))or(vehicle player == player)) then {
                 showHUD [true,false,false,false,false,true,false,true,false];
+
                 _sitc =  [driver _unit];
                 if(player in _sitc) then {
                     hint "あなたはヘリコプターパイロットではないのでパイロット席に搭乗できません";
@@ -74,7 +80,7 @@
                  showHUD [true,false,false,false,false,true,false,true,false];
                 _sitc = [_unit turretUnit [0]] + [driver _unit];
                 if(player in _sitc) then {
-                _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
+                _action = ["HUDAction 1","Connect HUD",'',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
                 [(typeOf _unit), 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToClass;
                 };
                };
@@ -91,7 +97,8 @@
                 };
                 _cot = [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
                 if((player in _cot)) then {
-                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToDriver')) then
+                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToDriver')or
+                (_this select 3 == 'moveToTurret [0,1]')) then
                  {hint 'あなたはタンククルーでは無いのでこの操作は無効です';true}"];
                 };
               };
@@ -115,11 +122,10 @@
                             systemChat "Loop Restart";
                             inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or
                             (_this select 3 == 'MoveToPilot')or
-                            (_this select 3 == 'MoveToDriver')) then {;false}"];
-
+                            (_this select 3 == 'MoveToDriver')or
+                            (_this select 3 == 'moveToTurret [0,1]')) then {;false}"];
                             _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
-                            [(typeOf _unit), 1, ["HUDAction 1"], _action] call ace_interact_menu_fnc_removeActionFromClass;
-
+                            [(typeOf _unit), 1, ['HUDAction 1','Connect HUD'], _action] call ace_interact_menu_fnc_removeActionFromClass;
                       }
                      };
                     };
