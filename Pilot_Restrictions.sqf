@@ -10,7 +10,7 @@
 
     _chopper = ["Helicopter"];
 
-    _attackchopper = ["Helicopter"];
+
 
     _armor = ["Tank"];
 
@@ -25,9 +25,9 @@
     waitUntil {player == player};
 
 
-    _chopperpilot = ((headgear player in _heligear)&&(vehicle player == player));
-    _jetpilot = ((headgear player in _gear)&&(vehicle player == player));
-    _crewman = ((headgear player in _crewgear)&&(vehicle player == player));
+    _chopperpilot = ((headgear player in _heligear));
+    _jetpilot = ((headgear player in _gear));
+    _crewman = ((headgear player in _crewgear));
 
 
 
@@ -41,8 +41,8 @@
             _unit = vehicle player;
 
             ///Plane///
-            if((({_unit isKindOf _x} count _plane) > 0 ) && (!_jetpilot))   then {
-
+            if(({_unit isKindOf _x} count _plane) > 0  && (!(headgear player in _gear))or(vehicle player == player)) then {
+showHUD [true,false,false,false,false,true,false,true,false];
                 _sit = [driver _unit];
                 if(player in _sit) then {
                     hint "あなたはジェットパイロットではないので搭乗できません";
@@ -52,14 +52,14 @@
                 if((player in _co)) then {
                 inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
                  {hint 'あなたはパイロットでは無いのでこの操作は不能です';true}"];
-                showHUD [true,false,false,false,false,true,false,true,false];
+
 
                 };
                };
 
             ///Gunship///
-            if((({_unit isKindOf _x} count _gunship) > 0 ) && (!_jetpilot)) then {
-
+            if(({_unit isKindOf _x} count _gunship) > 0  && (!(headgear player in _gear))or(vehicle player == player)) then {
+showHUD [true,false,false,false,false,true,false,true,false];
                 _sitg = [driver _unit];
                 if(player in _sitg) then {
                     hint "あなたはパイロットではないのでパイロット席やガンナー席コパイロット席に搭乗できません";
@@ -69,57 +69,43 @@
                 if((player in _cog)) then {
                 inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
                  {hint 'あなたはパイロットでは無いのでこの操作は不能です';true}"];
-                showHUD [true,false,false,false,false,true,false,true,false];
+
 
                 };
                };
 
             ///Chopper///
-            if((({_unit isKindOf _x} count _chopper)  > 0 ) && (!_chopperpilot)) then {
-
+            if(({_unit isKindOf _x} count _chopper)  > 0  && (!(headgear player in _heligear))or(vehicle player == player)) then {
+showHUD [true,false,false,false,false,true,false,true,false];
                 _sit =  [driver _unit];
                 if(player in _sit) then {
                     hint "あなたはヘリコプターパイロットではないのでパイロット席に搭乗できません";
-                    showHUD [true,false,false,false,false,true,false,true,false];
+
                     player action ["getOut", _unit];
                   };
                     _co = [_unit turretUnit [0]];
                     if((player in _co)) then {
                     inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
                      {hint 'あなたはヘリパイロットでは無いのでこの操作は不能です';true}"];
-                    showHUD [true,false,false,false,false,true,false,true,false];
+                   }
+                 else
+                   {
 
-                }
-              else
-                {
-                   _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true];},{true}] call ace_interact_menu_fnc_createAction;
-                   [player, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+
+                      _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true];},{true}] call ace_interact_menu_fnc_createAction;
+                      [player, 1, ["ACE_SelfActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+
+
                   };
                  };
 
-            ///Attack Chopper///
-            if((({_unit isKindOf _x} count _attackchopper) > 0 ) && (!_chopperpilot)) then {
-
-                _sita = [driver _unit];
-                if(player in _sita) then {
-                    hint "あなたはヘリコプターパイロットではないのでパイロット席やガンナー席コパイロット席に搭乗できません";
-                    player action ["getOut", _unit];
-                };
-                _coa = [_unit turretUnit [0]];
-                if((player in _coa)) then {
-                inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToPilot')) then
-                 {hint 'あなたはヘリパイロットでは無いのでこの操作は不能です';true}"];
-                showHUD [true,false,false,false,false,true,false,true,false];
-
-              };
-             };
 
             ///Crewman///
-            if((({_unit isKindOf _x} count _armor) > 0 ) && (!_crewman)) then {
-
+            if(({_unit isKindOf _x} count _armor) > 0  && (!(headgear player in _crewgear))or(vehicle player == player)) then {
+showHUD [true,false,false,false,false,true,false,true,false];
                 _sitt = [driver _unit];
                 if(player in _sitt) then {
-                showHUD [true,false,false,false,false,true,false,true,false];
+
                     hint "あなたはクルーではないので運転席やガンナー席に搭乗できません";
                     player action ["getOut", _unit];
                 };
@@ -127,7 +113,7 @@
                 if((player in _cot)) then {
                 inGameUISetEventHandler ["Action", "if ((_this select 3 == 'TakeVehicleControl') or (_this select 3 == 'MoveToDriver')) then
                  {hint 'あなたはタンククルーでは無いのでこの操作は不能です';true}"];
-                showHUD [true,false,false,false,false,true,false,true,false];
+
 
                 };
               };
@@ -136,7 +122,7 @@
             }
               else
             {
-            if (vehicle player != _oldvehicle) then {
+            if (vehicle player == player) then {
 
                             _unit = vehicle player;
                             showHUD [true,true,true,true,true,true,true,true,true];
