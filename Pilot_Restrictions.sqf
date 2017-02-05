@@ -36,7 +36,7 @@
 
             ///Plane///
             if(({_unit isKindOf _x} count _plane) > 0  && (!(headgear player in _gear))or(vehicle player == player)) then {
-                showHUD [true,false,false,false,false,true,false,true,false];
+                showHUD [true,false,false,false,false,false,false,true,false];
                 _sit = [driver _unit];
                 if(player in _sit) then {
                     hint "あなたはジェットパイロットではないので搭乗できません";
@@ -50,7 +50,7 @@
                };
 
                if(({_unit isKindOf _x} count _plane)  > 0  && ((headgear player in _gear))) then {
-               showHUD [true,false,false,false,false,true,false,true,false];
+               showHUD [true,false,false,false,false,false,false,true,false];
               _sit = [driver _unit] + [_unit turretUnit [1]] + [gunner _unit] + [_unit turretUnit [0]] + [_unit turretUnit [2]] + [_unit turretUnit [3]];
               if(player in _sit) then {
                 _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
@@ -60,7 +60,7 @@
 
             ///Chopper///
             if(({_unit isKindOf _x} count _chopper)  > 0  && (!(headgear player in _heligear))or(vehicle player == player)) then {
-                showHUD [true,false,false,false,false,true,false,true,false];
+                showHUD [true,false,false,false,false,false,false,true,false];
 
                 _sitc =  [driver _unit];
                 if(player in _sitc) then {
@@ -77,7 +77,7 @@
                  };
 
                  if(({_unit isKindOf _x} count _chopper)  > 0  && ((headgear player in _heligear))) then {
-                 showHUD [true,false,false,false,false,true,false,true,false];
+                 showHUD [true,false,false,false,false,false,false,true,false];
                 _sitc = [_unit turretUnit [0]] + [driver _unit];
                 if(player in _sitc) then {
                 _action = ["HUDAction 1","Connect HUD",'',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
@@ -88,7 +88,7 @@
 
             ///Crewman///
             if(({_unit isKindOf _x} count _armor) > 0  && (!(headgear player in _crewgear))or(vehicle player == player)) then {
-                showHUD [true,false,false,false,false,true,false,true,false];
+                showHUD [true,false,false,false,false,false,false,true,false];
                 _sitt = [driver _unit];
                 if(player in _sitt) then {
 
@@ -104,7 +104,7 @@
               };
 
               if(({_unit isKindOf _x} count _armor)  > 0  && ((headgear player in _crewgear))) then {
-              showHUD [true,false,false,false,false,true,false,true,false];
+              showHUD [true,false,false,false,false,false,false,true,false];
              _sitt = [driver _unit] + [commander _unit] + [_unit turretUnit [0]] + [_unit turretUnit [0,1]] + [_unit turretUnit [0,2]];
              if(player in _sitt) then {
                _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
