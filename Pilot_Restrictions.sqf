@@ -29,7 +29,7 @@
         if(vehicle player != player) then {
 
             _unit = vehicle player;
-hint "yyyyyyyy";
+
             _action = ['HUDAction 1','Connect HUD','',{showHUD [true,true,true,true,true,true,true,true,true],hint "Connected"},{true}] call ace_interact_menu_fnc_createAction;
             [(typeOf _unit), 1, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_removeActionFromClass;
 
